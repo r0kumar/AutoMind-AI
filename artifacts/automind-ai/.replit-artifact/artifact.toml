@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AutoMind AI"
+description = "A premium automotive service management workspace with a polished marketing site and responsive SaaS dashboard for appointments, customers, vehicles, jobs, inventory, analytics, AI insights, reports, and settings."
+version = "1.0.0"
+id = "artifacts/automind-ai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23717
+
+[services.development]
+run = "pnpm --filter @workspace/automind-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/automind-ai", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/automind-ai/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23717"
+BASE_PATH = "/"
