@@ -117,6 +117,7 @@
 
 @layer base {
   * { @apply border-border; }
+  html, body { overflow-x: hidden; }
   body { @apply font-sans antialiased bg-background text-foreground; }
   button, a, input, select { -webkit-tap-highlight-color: transparent; }
 }
@@ -137,3 +138,23 @@
 .stagger-3 { animation-delay: 180ms; }
 .stagger-4 { animation-delay: 240ms; }
 .bar-fill { transition: transform .6s cubic-bezier(.22,1,.36,1); transform-origin: left; }
+
+@media (min-width: 390px) and (max-width: 639px) {
+  main [class~="sm:grid-cols-2"],
+  main [class~="sm:grid-cols-3"],
+  main [class~="sm:grid-cols-5"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1279px) {
+  main [class~="xl:grid-cols-4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  main [class~="min-h-[360px]"] {
+    min-height: auto;
+  }
+}
